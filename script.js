@@ -1,25 +1,34 @@
-//your JS code here. If required.
 const bands = [
-    'The Plot in You', 'The Devil Wears Prada', 'Pierce the Veil', 
-    'Norma Jean', 'The Bled', 'Say Anything', 'The Midway State', 
-    'We Came as Romans', 'Counterparts', 'Oh, Sleeper', 'A Skylit Drive', 
-    'Anywhere But Here', 'An Old Dog'
+    'The Plot in You',
+    'The Devil Wears Prada',
+    'Pierce the Veil',
+    'Norma Jean',
+    'The Bled',
+    'Say Anything',
+    'The Midway State',
+    'We Came as Romans',
+    'Counterparts',
+    'Oh, Sleeper',
+    'A Skylit Drive',
+    'Anywhere But Here',
+    'An Old Dog'
 ];
 
-// Function to strip the articles "a", "an", and "the" from the start of the string
-function stripArticle(bandName) {
-    return bandName.replace(/^(a |an |the )/i, '').trim();
+// Function to sort bands
+function sortBands(bands) {
+    return bands.sort((a, b) => {
+        const normalize = (str) => str.replace(/^(a|an|the)\s+/i, '').toLowerCase();
+        return normalize(a).localeCompare(normalize(b));
+    });
 }
 
-// Sort the array ignoring articles
-const sortedBands = bands.sort((a, b) => stripArticle(a).localeCompare(stripArticle(b)));
+// Get sorted bands
+const sortedBands = sortBands(bands);
 
-// Get the unordered list by its id
-const ul = document.getElementById('band');
-
-// Populate the list dynamically
+// Display sorted bands in the unordered list
+const bandList = document.getElementById('band');
 sortedBands.forEach(band => {
-    const li = document.createElement('li'); // Create a list item
-    li.textContent = band; // Set the text content to the band name
-    ul.appendChild(li); // Add the list item to the unordered list
+    const li = document.createElement('li');
+    li.textContent = band;
+    bandList.appendChild(li);
 });
