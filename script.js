@@ -14,7 +14,7 @@ function strip(article) {
 const sortedBands = bands.sort((a, b) => strip(a).localeCompare(strip(b)));
 
 // Get the 'band' ul element
-const ul = document.getElementById('band');
+const ul = document.getElementById('bands');
 
 // Append each sorted band as an li element
 sortedBands.forEach(band => {
