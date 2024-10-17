@@ -1,34 +1,24 @@
 const bands = [
-    'The Plot in You',
-    'The Devil Wears Prada',
-    'Pierce the Veil',
-    'Norma Jean',
-    'The Bled',
-    'Say Anything',
-    'The Midway State',
-    'We Came as Romans',
-    'Counterparts',
-    'Oh, Sleeper',
-    'A Skylit Drive',
-    'Anywhere But Here',
-    'An Old Dog'
-];
+            'The Plot in You', 'The Devil Wears Prada', 'Pierce the Veil', 
+            'Norma Jean', 'The Bled', 'Say Anything', 'The Midway State', 
+            'We Came as Romans', 'Counterparts', 'Oh, Sleeper', 'A Skylit Drive', 
+            'Anywhere But Here', 'An Old Dog'
+        ];
 
-// Function to sort bands
-function sortBands(bands) {
-    return bands.sort((a, b) => {
-        const normalize = (str) => str.replace(/^(a|an|the)\s+/i, '').toLowerCase();
-        return normalize(a).localeCompare(normalize(b));
-    });
-}
+        // Function to strip unwanted words
+        function strip(article) {
+            return article.replace(/^(a |an |the )/i, '').trim();
+        }
 
-// Get sorted bands
-const sortedBands = sortBands(bands);
+        // Sort the bands ignoring the words 'a', 'an', and 'the'
+        const sortedBands = bands.sort((a, b) => strip(a).localeCompare(strip(b)));
 
-// Display sorted bands in the unordered list
-const bandList = document.getElementById('band');
-sortedBands.forEach(band => {
-    const li = document.createElement('li');
-    li.textContent = band;
-    bandList.appendChild(li);
-});
+        // Get the 'band' ul element
+        const ul = document.getElementById('band');
+
+        // Append each sorted band as an li element
+        sortedBands.forEach(band => {
+            const li = document.createElement('li');
+            li.textContent = band;
+            ul.appendChild(li);
+        });
